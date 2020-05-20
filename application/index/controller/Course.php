@@ -99,6 +99,31 @@ class Course
 		$ret = Web::check_auth(Web::priv(0, 1, 1), $request->param('openid'));
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
+		$course_id = $request->param('course_id');
+		
+		
+		$data = array();
+		if($request->param['course_name'] != NULL)
+			$data['cname'] = $request->param['course_name'];
+		if($request->param['grade'] != NULL)
+			$data['grade'] = $request->param['grade'];
+		if($request->param['content'] != NULL)
+			$data['content'] = $request->param['content'];
+		if($request->param['use_book'] != NULL)
+			$data['use_book'] = $request->param['use_book'];
+		if($request->param['position'] != NULL)
+			$data['position'] = $request->param['position'];
+		if($request->param['teacher_id'] != NULL)
+			$data['teacher_id'] = $request->param['teacher_id'];
+		if($request->param['process_id'] != NULL)
+			$data['process_id'] = $request->param['process_id'];
+		if(Db::table('tb_teacher') -> where('teacher_id', $request->param('teacher_id')) -> find() == NULL)
+			return Web::error_out(2, "无教师信息");
+		if(Db::table('tb_process') -> where('process_id', $request->param('process_id')) -> find() == NULL)
+			return Web::error_out(3, "无专业信息");
+		
+		Db::table('tb_course')->data($data)->update();
+		return json_encode(['code'=>0]);
 	}
 	//删除课程
 	public function remove()
@@ -108,6 +133,10 @@ class Course
 		$ret = Web::check_auth(Web::priv(0, 1, 1), $request->param('openid'));
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
+		
+		$course_id = $request->param('course_id');
+		Db::table('tb_course')->where('id',$course_id)->delete();
+		return json_encode(['code'=>0]);
 	}
 }
 ?>                                                                                                                            
