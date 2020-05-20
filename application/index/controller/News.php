@@ -47,8 +47,9 @@ class News
 	//添加新闻
 	public function insert()
 	{
-		/*
+		
 		$request = new Request;
+		/*
 		//鉴权
 		$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
 		
