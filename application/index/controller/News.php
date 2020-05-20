@@ -47,12 +47,10 @@ class News
 	//添加新闻
 	public function insert()
 	{
+		/*
 		$request = new Request;
 		//鉴权
 		$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
-		
-		dump($request->param('openid'));
-		
 		
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
@@ -61,6 +59,7 @@ class News
 		$data['title'] = $request->param('course_name');
 		$data['content'] = $request->param('content');
 		$data['upload_time'] = $request->param('upload_time');
+		*/
 		
 		// 获取表单上传文件 例如上传了001.jpg
 		$file = $request->file('image');
@@ -74,12 +73,12 @@ class News
 			echo $info->getSaveName();
 			// 输出 42a79759f284b767dfcb2a0197904287.jpg
 			echo $info->getFilename(); 
-			$data['image'] = $info->getSaveName();
+			//$data['image'] = $info->getSaveName();
 		}else{
 			// 上传失败获取错误信息
 			return Web::error_out(2, $file->getError());
 		}
-		Db::table('tb_new')->data($data)->insert();
+		//Db::table('tb_new')->data($data)->insert();
 		
 		return json_encode(['code'=>0]);
 	}
