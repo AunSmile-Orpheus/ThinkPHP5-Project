@@ -19,10 +19,9 @@ class Course
         $request = new Request;
         //鉴权
         $ret = Web::check_auth(Web::priv(1, 1, 1), $request->param('openid'));
-        $course_name = $request->param('course_name');
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
-
+	$course_name = $request->param('course_name');
         $course_list = Db::table('tb_course')
 		->alias('c')
 		->join('tb_teacher t','c.teacher_id = t.teacher_id')
@@ -35,7 +34,19 @@ class Course
     //根据课程ID查看课程详细信息
     public function detail()
     {
-
+	$request = new Request;
+        //鉴权
+	$ret = Web::check_auth(Web::priv(1, 1, 1), $request->param('openid'));
+	if($ret == false)
+            return Web::error_out(1, "鉴权失败");
+	
+	$course_id = $request->param('course_id');
+	$course_data = Db::table('tb_course')
+		->alias('c')
+		->join('tb_teacher t','c.teacher_id = t.teacher_id')
+		->where('course_id', $course_id)
+		->find();
+	return json_encode(['code'=>0, '$course_data'=>$course_data]);
     }
 }
 ?>
