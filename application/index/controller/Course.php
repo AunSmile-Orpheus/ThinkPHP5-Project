@@ -102,26 +102,23 @@ class Course
 		
 		$data = array();
 		$data['id'] = $request->param('course_id');
-		dump($request->param['use_book']);
-		$data['use_book'] = $request->param['use_book'];
-		dump($data['use_book']);
-		if($request->param['course_name'] != NULL)
-			$data['cname'] = $request->param['course_name'];
-		if($request->param['grade'] != NULL)
-			$data['grade'] = $request->param['grade'];
-		if($request->param['content'] != NULL)
-			$data['content'] = $request->param['content'];
-		if($request->param['use_book'] != NULL)
-			$data['use_book'] = $request->param['use_book'];
-		if($request->param['position'] != NULL)
-			$data['position'] = $request->param['position'];
-		if($request->param['teacher_id'] != NULL)
-			$data['teacher_id'] = $request->param['teacher_id'];
-		if($request->param['process_id'] != NULL)
-			$data['process_id'] = $request->param['process_id'];
-		if($request->param['teacher_id'] != NULL && Db::table('tb_teacher') -> where('teacher_id', $request->param('teacher_id')) -> find() == NULL)
+		if($request->param('course_name') != NULL)
+			$data['cname'] = $request->param('course_name');
+		if($request->param('grade') != NULL)
+			$data['grade'] = $request->param('grade');
+		if($request->param('content') != NULL)
+			$data['content'] = $request->param('content');
+		if($request->param('use_book') != NULL)
+			$data['use_book'] = $request->param('use_book');
+		if($request->param('position') != NULL)
+			$data['position'] = $request->param('position');
+		if($request->param('teacher_id') != NULL)
+			$data['teacher_id'] = $request->param('teacher_id');
+		if($request->param('process_id') != NULL)
+			$data['process_id'] = $request->param('process_id');
+		if($request->param('teacher_id') != NULL && Db::table('tb_teacher') -> where('teacher_id', $request->param('teacher_id')) -> find() == NULL)
 			return Web::error_out(2, "无教师信息");
-		if($request->param['process_id'] != NULL && Db::table('tb_process') -> where('process_id', $request->param('process_id')) -> find() == NULL)
+		if($request->param('process_id') != NULL && Db::table('tb_process') -> where('process_id', $request->param('process_id')) -> find() == NULL)
 			return Web::error_out(3, "无专业信息");
 		
 		Db::table('tb_course')->data($data)->update();
