@@ -64,7 +64,7 @@ class User
                 Db::name('tb_user')->data($data)->insert();
 		//如果是教师账户的注册则在教师表内添加教师数据
 		if($type == 1){
-			Db::name('tb_teacher')->data(['openid' => $data['openid'], 'username' => 'not named']);
+			Db::name('tb_teacher')->data(['openid' => $data['openid'], 'username' => 'not named'])->insert();
 		}
                 $result = array('code' => 0);
                 return json_encode($result);
