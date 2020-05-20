@@ -99,10 +99,9 @@ class Course
 		$ret = Web::check_auth(Web::priv(0, 1, 1), $request->param('openid'));
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
-		$course_id = $request->param('course_id');
-		
 		
 		$data = array();
+		$data['course_id'] = $request->param('course_id');
 		if($request->param['course_name'] != NULL)
 			$data['cname'] = $request->param['course_name'];
 		if($request->param['grade'] != NULL)
@@ -117,9 +116,9 @@ class Course
 			$data['teacher_id'] = $request->param['teacher_id'];
 		if($request->param['process_id'] != NULL)
 			$data['process_id'] = $request->param['process_id'];
-		if(Db::table('tb_teacher') -> where('teacher_id', $request->param('teacher_id')) -> find() == NULL)
+		if($request->param['teacher_id'] != NULL && Db::table('tb_teacher') -> where('teacher_id', $request->param('teacher_id')) -> find() == NULL)
 			return Web::error_out(2, "无教师信息");
-		if(Db::table('tb_process') -> where('process_id', $request->param('process_id')) -> find() == NULL)
+		if($request->param['process_id'] != NULL && Db::table('tb_process') -> where('process_id', $request->param('process_id')) -> find() == NULL)
 			return Web::error_out(3, "无专业信息");
 		
 		Db::table('tb_course')->data($data)->update();
