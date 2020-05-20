@@ -23,13 +23,8 @@ class Course
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
 
-        $where = array();
-        if($course_name != NULL)
-        {
-            $where['cname'] = ['like','%'.$course_name.'%'];
-        }
-        $course_list = Db::table('tb_course')->where($where)->select();
-        return $course_list;
+        $course_list = Db::table('tb_course')->where('cname', 'like', '%'.$course_name.'%')->select();
+	return json_encode(['code'=>0, 'course_list'=>$course_list]);
     }
 
     //根据课程ID查看课程详细信息

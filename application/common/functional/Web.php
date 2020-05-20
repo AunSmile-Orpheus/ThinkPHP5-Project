@@ -21,6 +21,8 @@ class Web
     static public function check_auth($privilege, $openid)
     {
         $user_data = Db::table('tb_user')->where('openid', $openid)->find();
+	if($user_data == NULL)
+		return false;
         $type = $user_data['type'];
         return ($privilege & (1 << $type)) == (1 << $type);
     }
