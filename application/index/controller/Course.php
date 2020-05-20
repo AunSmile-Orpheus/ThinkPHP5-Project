@@ -122,7 +122,7 @@ class Course
 			return Web::error_out(3, "无专业信息");
 		
 		Db::table('tb_course')->data($data)->update();
-		return json_encode(['code'=>0]);
+		return json_encode(['code'=>0, 'data'=>$data]);
 	}
 	//删除课程
 	public function remove()
