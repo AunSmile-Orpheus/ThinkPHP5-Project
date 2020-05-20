@@ -50,6 +50,10 @@ class News
 		$request = new Request;
 		//鉴权
 		$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
+		
+		dump($request->param('openid'));
+		
+		
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
 		
