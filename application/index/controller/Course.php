@@ -89,7 +89,7 @@ class Course
 		$course_data['process_id'] = $request->param('process_id');
 		Db::table('tb_course')->data($course_data)->insert();
 		
-		return json_encode(['code']=>0);
+		return json_encode(['code'=>0]);
 	}
 	//修改课程
 	public function update()
