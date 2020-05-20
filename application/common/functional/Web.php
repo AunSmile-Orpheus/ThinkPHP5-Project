@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common;
+namespace app\common\functional;
 
 class Web
 {
