@@ -78,8 +78,8 @@ class Course
             return Web::error_out(1, "鉴权失败");
 		if(Db::table('tb_teacher') -> where('teacher_id', $request->param('teacher_id')) -> find() == NULL)
 			return Web::error_out(2, "无教师信息");
-		if(Db::table('tb_process') -> where('process_id', $request->param('process_id') -> find() == NULL)
-			return Web::error_out(3, "无教师信息");
+		if(Db::table('tb_process') -> where('process_id', $request->param('process_id')) -> find() == NULL)
+			return Web::error_out(3, "无专业信息");
 		
 		$course_data = array();
 		$course_data['cname'] = $request->param('course_name');
