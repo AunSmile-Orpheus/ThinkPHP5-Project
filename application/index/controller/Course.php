@@ -23,9 +23,8 @@ class Course
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
 
-        $course_list = Db::table('tb_course ')
-		->alias('c')
-		->join('tb_teacher t','c.teacher_id = t.teacher_id')
+        $course_list = Db::table('tb_course')
+		->join('tb_teacher t','teacher_id = t.teacher_id')
 		->where('cname', 'like', '%'.$course_name.'%')
 		->select();
 	    
