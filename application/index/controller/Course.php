@@ -63,9 +63,9 @@ class Course
 		$teacher_list = Db::table('tb_teacher')->select();
 		$process_list = Db::table('tb_process')->select();
 		
-		return json_encode(['code']=>0, 
+		return json_encode(['code'=>0, 
 							'teacher_list'=>$teacher_list, 
-							'process_list'=>$process_list);
+							'process_list'=>$process_list]);
 	}
 	
 	//添加课程
