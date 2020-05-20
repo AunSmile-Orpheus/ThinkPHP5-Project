@@ -103,6 +103,8 @@ class Course
 		$data = array();
 		$data['id'] = $request->param('course_id');
 		dump($request->param['use_book']);
+		$data['use_book'] = $request->param['use_book'];
+		dump($data['use_book']);
 		if($request->param['course_name'] != NULL)
 			$data['cname'] = $request->param['course_name'];
 		if($request->param['grade'] != NULL)
