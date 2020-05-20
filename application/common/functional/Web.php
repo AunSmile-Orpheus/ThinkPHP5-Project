@@ -11,4 +11,10 @@ class Web
         $result['message'] = $message;
         return json_encode($result);
     }
+    static public function version()
+    {
+    	$result = array();
+	$result['version'] = '1.0.0';
+	return json_encode($result);
+    }
 }
