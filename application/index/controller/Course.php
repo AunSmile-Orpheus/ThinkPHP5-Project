@@ -44,7 +44,7 @@ class Course
 	$course_data = Db::table('tb_course')
 		->alias('c')
 		->join('tb_teacher t','c.teacher_id = t.teacher_id')
-		->where('course_id', $course_id)
+		->where('id', $course_id)
 		->find();
 	return json_encode(['code'=>0, '$course_data'=>$course_data]);
     }
