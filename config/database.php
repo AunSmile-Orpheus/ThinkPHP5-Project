@@ -15,11 +15,11 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => '',
+    'database'        => 'school',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'aunsmile',
     // 密码
-    'password'        => '',
+    'password'        => 'suibian',
     // 端口
     'hostport'        => '',
     // 连接dsn
