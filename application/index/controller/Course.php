@@ -109,4 +109,5 @@ class Course
         if($ret == false)
             return Web::error_out(1, "鉴权失败");
 	}
+}
 ?>                                                                                                                                       1,1           Top
