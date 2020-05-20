@@ -101,7 +101,7 @@ class Course
             return Web::error_out(1, "鉴权失败");
 		
 		$data = array();
-		$data['course_id'] = $request->param('course_id');
+		$data['id'] = $request->param('course_id');
 		if($request->param['course_name'] != NULL)
 			$data['cname'] = $request->param['course_name'];
 		if($request->param['grade'] != NULL)
