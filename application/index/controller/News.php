@@ -47,9 +47,7 @@ class News
 	//添加新闻
 	public function insert()
 	{
-		
 		$request = new Request;
-		/*
 		//鉴权
 		$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
 		
@@ -57,29 +55,26 @@ class News
             return Web::error_out(1, "鉴权失败");
 		
 		$data = array();
-		$data['title'] = $request->param('course_name');
+		$data['title'] = $request->param('title');
 		$data['content'] = $request->param('content');
 		$data['upload_time'] = $request->param('upload_time');
-		*/
 		
 		// 获取表单上传文件 例如上传了001.jpg
 		$file = $request->file('image');
-		// 移动到框架应用根目录/uploads/ 目录下
-		$info = $file->move( '../uploads');
-		if($info){
-			// 成功上传后 获取上传信息
-			// 输出 jpg
-			echo $info->getExtension();
-			// 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-			echo $info->getSaveName();
-			// 输出 42a79759f284b767dfcb2a0197904287.jpg
-			echo $info->getFilename(); 
-			//$data['image'] = $info->getSaveName();
-		}else{
-			// 上传失败获取错误信息
-			return Web::error_out(2, $file->getError());
+		if($file != NULL)
+		{
+			// 移动到框架应用根目录/uploads/ 目录下
+			$info = $file->move( '../uploads');
+			if($info){
+				//输出20160820/42a79759f284b767dfcb2a0197904287.jpg
+				echo $info->getSaveName();
+				$data['image'] = $info->getSaveName();
+			}else{
+				// 上传失败获取错误信息
+				return Web::error_out(2, $file->getError());
+			}
 		}
-		//Db::table('tb_new')->data($data)->insert();
+		Db::table('tb_new')->data($data)->insert();
 		
 		return json_encode(['code'=>0]);
 	}
@@ -94,7 +89,44 @@ class News
             return Web::error_out(1, "鉴权失败");
 		
 		$new_id = $request->param('new_id');
-		Db::table('tb_course')->where('id',$new_id)->delete();
+		Db::table('tb_new')->where('id',$new_id)->delete();
+		return json_encode(['code'=>0]);
+	}
+
+	//修改新闻
+	public function update()
+	{
+		$request = new Request;
+		//鉴权
+		$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
+        if($ret == false)
+			return Web::error_out(1, "鉴权失败");
+		
+		$data = array();
+		$data['id'] = $request->param('new_id');
+		if($request->param('title') != NULL)
+			$data['title'] = $request->param('title');
+		if($request->param('content') != NULL)
+			$data['content'] = $request->param('content');
+		if($request->param('upload_time') != NULL)
+			$data['upload_time'] = $request->param('upload_time');
+
+		$file = $request->file('image');
+		if($file != NULL)
+		{
+			// 移动到框架应用根目录/uploads/ 目录下
+			$info = $file->move( '../uploads');
+			if($info){
+				//输出20160820/42a79759f284b767dfcb2a0197904287.jpg
+				echo $info->getSaveName();
+				$data['image'] = $info->getSaveName();
+			}else{
+				// 上传失败获取错误信息
+				return Web::error_out(2, $file->getError());
+			}
+		}
+		
+		Db::table('tb_new')->data($data)->update();
 		return json_encode(['code'=>0]);
 	}
 }
