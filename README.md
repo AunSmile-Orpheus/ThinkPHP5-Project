@@ -161,10 +161,12 @@ username   | varchar(30) | YES  |     | NULL    |
 picture    | varchar(20) | YES  |     | NULL    |                
 
 ### 3.专业表
-| Field      | Type        | Null | Key | Default | Extra          |
+ Field      | Type        | Null | Key | Default | Extra          
 -|-|-|-|-|-
-| process_id | int(11)     | NO   | PRI | NULL    | auto_increment |
-| name       | varchar(30) | YES  |     | NULL    |                |
+ process_id | int(11)     | NO   | PRI | NULL    | auto_increment 
+ content    | text        | YES  |     | NULL    |                
+ jobs       | text        | YES  |     | NULL    |                
+ name       | varchar(30) | YES  |     | NULL    |                
 
 ### 4.新闻表
 | Field       | Type        | Null | Key | Default | Extra          |
@@ -187,3 +189,35 @@ picture    | varchar(20) | YES  |     | NULL    |
 | content    | text        | YES  |     | NULL    |                |
 | use_book   | varchar(50) | YES  |     | NULL    |                |
 | position   | varchar(50) | YES  |     | NULL    |                |
+
+### 6.专业学期课程表
+Field      | Type    | Null | Key | Default | Extra          
+-|-|-|-|-|-
+id         | int(11) | NO   | PRI | NULL    | auto_increment 
+process_id | int(11) | NO   |     | NULL    |                
+term_index | int(11) | NO   |     | NULL    |                
+course_id  | int(11) | NO   |     | NULL    |    
+
+### 7.专业教师表
+Field      | Type    | Null | Key | Default | Extra          
+-|-|-|-|-|-
+id         | int(11) | NO   | PRI | NULL    | auto_increment 
+process_id | int(11) | NO   |     | NULL    |                
+teacher_id | int(11) | NO   |     | NULL    |     
+
+### 8.课程课件表
+Field         | Type         | Null | Key | Default | Extra          
+-|-|-|-|-|-
+id            | int(11)      | NO   | PRI | NULL    | auto_increment 
+name          | varchar(30)  | NO   |     | NULL    |                
+resource_addr | varchar(100) | NO   |     | NULL    |                
+course_id     | int(11)      | NO   |     | NULL    |    
+
+### 9.课程章节（视频）表
+Field       | Type         | Null | Key | Default | Extra         
+-|-|-|-|-|-
+id          | int(11)      | NO   | PRI | NULL    | auto_increment
+name        | varchar(30)  | NO   |     | NULL    |               
+video_addr  | varchar(100) | NO   |     | NULL    |               
+course_id   | int(11)      | NO   |     | NULL    |               
+order_index | int(11)      | NO   |     | NULL    |      
