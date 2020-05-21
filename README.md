@@ -144,6 +144,50 @@
   content|新闻内容
   image|图片
   
+  ### 四.专业类
+  #### 1.专业搜索接口
+  ```
+  http://49.233.14.53/git_school/public/index.php/Index/Process/Search?openid=F6D9C2KpzHIhVsS
+  鉴权等级：111
+  ```
+  #### 2.专业详情接口
+  ```
+  http://49.233.14.53/git_school/public/index.php/Index/Process/Detail?openid=F6D9C2KpzHIhVsS
+  鉴权等级：111
+  ```
+  字段名称|字段内容
+  -|-
+  process_id|专业ID
+  
+  #### 3.专业删除接口
+  ```
+  http://49.233.14.53/git_school/public/index.php/Index/Process/Remove?openid=ezSddemyLH3hZDl
+  ```
+  字段名称|字段内容
+  -|-
+  process_id|专业ID
+  
+  #### 4.专业修改接口
+  ```
+  http://49.233.14.53/git_school/public/index.php/Index/Process/Update?openid=ezSddemyLH3hZDl
+  ```
+  字段名称|字段内容
+  -|-
+  process_id|专业ID
+  name|专业名称
+  content|专业内容
+  jobs|职业方向
+  
+  #### 5.专业添加接口
+  ```
+  http://49.233.14.53/git_school/public/index.php/Index/Process/Insert?openid=ezSddemyLH3hZDl
+  ```
+  字段名称|字段内容
+  -|-
+  name|专业名称
+  content|专业内容
+  jobs|职业方向
+  
 ## 数据库
 ### 1.用户表
 Field    | Type        | Null | Key | Default | Extra |
