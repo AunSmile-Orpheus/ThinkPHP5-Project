@@ -69,5 +69,29 @@ class User
                 $result = array('code' => 0);
                 return json_encode($result);
         }
+		
+		public function query()
+		{
+			$request = new Request;
+			//鉴权
+			$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
+			if($ret == false)
+					return Web::error_out(1, "鉴权失败");
+			
+			
+			$data = Db::table('tb_user')->select();
+			return json_encode(['code'=>0, '$data'=>$data]);
+		}
+		
+		public function remove()
+		{
+			$request = new Request;
+			//鉴权
+			$ret = Web::check_auth(Web::priv(0, 0, 1), $request->param('openid'));
+			if($ret == false)
+					return Web::error_out(1, "鉴权失败");
+			$username = $request->param('username');
+			$data = Db::table('tb_user')->where('username', $username)->delete();
+		}
 }
 ?>
