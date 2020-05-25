@@ -24,7 +24,7 @@ header('Access-Control-Allow-Headers:x-requested-with,content-type');
 
 
 
-class Processresource
+class Courseresource
 
 {
 
